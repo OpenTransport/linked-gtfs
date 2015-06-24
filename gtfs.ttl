@@ -475,6 +475,7 @@ gtfs:dropOffType a rdf:Property ;
                  status:term_status "inestable"@es ;
                  rdfs:label "Drop off type"@en ;
                  rdfs:label "tipo de bajada"@es ;
+                 rdfs:comment "Which type of drop off"@en;
                  rdfs:comment "Indica si los pasajeros se bajan en una parada como parte del horario normal o si no pueden bajar en esa parada."@es;
                  rdfs:range gtfs:DropOffType .
 
@@ -484,322 +485,489 @@ gtfs:PickupType a rdfs:Class ;
                 rdfs:label "Pickup Type"@en ;
                 rdfs:label "Tipo de recogida"@es ;
                 rdfs:comment "Instances of this class can be used by gtfs:pickupType"@en ;
-                rdfs:comment "Indica si se recogen los pasajeros en una parada como parte del horario normal o si su recogida en dicha parada no se encuentra disponible. Este campo también permite a la empresa de transporte público indicar que los pasajeros deben llamar a la empresa o notificar al conductor que es necesario recogerlos en esa parada en concreto. Los valores válidos para este campo son: 0 - recogida programada regularmente; 1 - recogida no disponible; 2 - se debe llamar a la empresa para organizar una recogida; 3 - se debe coordinar con el conductor para organizar una recogida. El valor predeterminado de este campo es 0."@es .
+                rdfs:comment "Instancias de esta clase pueden ser usadas por gtfs:pickupType. Indica si se recogen los pasajeros en una parada como parte del horario normal o si su recogida en dicha parada no se encuentra disponible. Este campo también permite a la empresa de transporte público indicar que los pasajeros deben llamar a la empresa o notificar al conductor que es necesario recogerlos en esa parada en concreto. Los valores válidos para este campo son: 0 - recogida programada regularmente; 1 - recogida no disponible; 2 - se debe llamar a la empresa para organizar una recogida; 3 - se debe coordinar con el conductor para organizar una recogida. El valor predeterminado de este campo es 0."@es .
 
 gtfs:DropOffType a rdfs:Class ;
                  status:term_status "unstable"@en ;
-                 rdfs:label "Drop Off Type" ;
+					  status:term_status "inestable"@es ;
+                 rdfs:label "Drop Off Type"@en ;
+                 rdfs:label "Tipo de bajada"@es ;
                  rdfs:comment "Instances of this class can be used by gtfs:dropOffType"@en .
+                 rdfs:comment "Instancias de esta clase pueden ser usadas por gtfs:dropOffType. Indica si los pasajeros se bajan en una parada como parte del horario normal o si no pueden bajar en esa parada."@es;
 
 gtfs:Regular a gtfs:PickupType, gtfs:DropOffType ;
              status:term_status "unstable"@en ;
              status:term_status "inestable"@es ;
              rdfs:label "Regularly scheduled pickup or drop off"@en ;
-             rdfs:label "Regularly scheduled pickup or drop off"@es ;
-             gtfs:comment "If no pickup_type or drop_off_type given in stop_times.txt, map to this one."@en .
+             rdfs:label "Parada programada regularmente"@es ;
+             gtfs:comment "If no pickup_type or drop_off_type given in stop_times.txt, map to this one."@en ;
+             gtfs:comment "Si no se incluye pickup_type o drop_off_type en stop_times.txt, mapee a este concepto."@es .
 
 gtfs:NotAvailable a gtfs:PickupType, gtfs:DropOffType ;
                   status:term_status "unstable"@en ;
-                  rdfs:label "Pickup or drop off not available"@en .
+                  status:term_status "inestable"@es ;
+                  rdfs:label "Pickup or drop off not available"@en ;
+                  rdfs:label "Sin parada disponible"@es .
 
 gtfs:MustPhone a gtfs:PickupType, gtfs:DropOffType ;
                status:term_status "unstable"@en ;
-               rdfs:label "Must phone agency to arrange pickup or drop off"@en .
+               status:term_status "inestable"@es ;
+               rdfs:label "Must phone agency to arrange pickup or drop off"@en ;
+               rdfs:label "Se debe llamar a la empresa para organizar la parada."@es .
 
 gtfs:MustCoordinateWithDriver a gtfs:PickupType, gtfs:DropOffType ;
                               status:term_status "unstable"@en ;
-                              rdfs:label "Must coordinate with driver to arrange pickup or drop off"@en .
+                              status:term_status "inestable"@es ;
+                              rdfs:label "Must coordinate with driver to arrange pickup or drop off"@en ;
+                              rdfs:label "Se debe pedir al conductor que pare."@es .
 
 gtfs:Service a rdfs:Class ;
              status:term_status "unstable"@en ;
+				 status:term_status "inestable"@es ;
              rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#calendar_fields> , <https://developers.google.com/transit/gtfs/reference#calendar_dates_fields> ;
              rdfs:label "Service"@en ;
+             rdfs:label "Servicio"@es ;
              rdfs:comment "A gtfs:Service identifies a set of dates when a service is available for one or more routes"@en ;
-             gtfs:comment "A gtfs:Service is a set of gtfs:ServiceRules which can be found in both calendar.txt as calendar_dates.txt"@en .
+             rdfs:comment "Un gtfs:Service indica el conjunto de fechas en el que el servicio está disponible para una o más rutas"@es ;
+             gtfs:comment "A gtfs:Service is a set of gtfs:ServiceRules which can be found in both calendar.txt as calendar_dates.txt"@en ;
+             gtfs:comment "Un gtfs:Service es un conjunto de gtfs:ServiceRules que pueden ser encontradas en calendar.txt y calendar_dates.txt"@es .
 
 gtfs:serviceRule a rdf:Property ;
                  status:term_status "unstable"@en ;
+					  status:term_status "inestable"@es ;
                  rdfs:label "Service rule"@en ;
+                 rdfs:label "regla de servicio"@es ;
                  rdfs:comment "Service rules which define together a set of dates"@en ;
+                 rdfs:comment "Reglas de servicio que definen un conjunto de fechas"@es ;
                  rdfs:range gtfs:ServiceRule ;
                  rdfs:domain gtfs:Service .
 
 gtfs:ServiceRule a rdfs:Class ;
                  status:term_status "unstable"@en ;
+					  status:term_status "inestable"@es ;
                  rdfs:label "Service rule"@en ;
-                 rdfs:comment "One or more service rules define a set of dates"@en .
+                 rdfs:label "Regla de servicio"@es ;
+                 rdfs:comment "One or more service rules define a set of dates"@en ;
+                 rdfs:comment "Una o más reglas de servicio definen un conjunto de fechas"@es .
 
 gtfs:CalendarRule a rdfs:Class ;
                   status:term_status "unstable"@en ;
+                  status:term_status "inestable"@es ;
                   rdfs:subClassOf gtfs:ServiceRule ;
                   rdfs:label "Calendar rule"@en;
+                  rdfs:label "Regla de calendario"@es;
                   rdfs:comment "Defines on which days of the week for a certain period the service is available."@en ;
-                  gtfs:comment "a row from calendar.txt"@en .
+                  rdfs:comment "Define en qué días de la semana el servicio está disponible para un periodo concreto."@es ;
+                  gtfs:comment "a row from calendar.txt"@en ;
+                  gtfs:comment "una línea de calendar.txt"@es .
 
 gtfs:monday a rdf:Property ;
             status:term_status "unstable"@en ;
+            status:term_status "inestable"@es ;
             rdfs:label "Monday"@en ;
+            rdfs:label "lunes"@es ;
             rdfs:comment "Service is available on Monday"@en ;
+            rdfs:comment "Servicio disponible los lunes"@es ;
             rdfs:range xsd:boolean .
 
 gtfs:tuesday a rdf:Property ;
              status:term_status "unstable"@en ;
+				 status:term_status "inestable"@es ;
              rdfs:label "Tuesday"@en ;
+             rdfs:label "martes"@es ;
              rdfs:comment "Service is available on Tuesday"@en ;
+             rdfs:comment "Servicio disponible los martes"@es ;
              rdfs:range xsd:boolean .
 
 gtfs:wednesday a rdf:Property ;
                status:term_status "unstable"@en ;
+               status:term_status "inestable"@es ;
                rdfs:label "Wednesday"@en ;
+               rdfs:label "miércoles"@es ;
                rdfs:comment "Service is available on Wednesday"@en ;
+               rdfs:comment "Servicio disponible los miércoles"@es ;
                rdfs:range xsd:boolean .
 
 gtfs:thursday a rdf:Property ;
               status:term_status "unstable"@en ;
+				  status:term_status "inestable"@es ;
               rdfs:label "Thursday"@en ;
+              rdfs:label "jueves"@es ;
               rdfs:comment "Service is available on Thursday"@en ;
+              rdfs:comment "Servicio disponible los jueves"@es ;
               rdfs:range xsd:boolean .
 
 gtfs:friday a rdf:Property ;
             status:term_status "unstable"@en ;
+            status:term_status "inestable"@es ;
             rdfs:label "Friday"@en ;
+            rdfs:label "viernes"@es ;
             rdfs:comment "Service is available on Friday"@en ;
+            rdfs:comment "Servicio disponible los viernes"@es ;
             rdfs:range xsd:boolean .
 
 gtfs:saturday a rdf:Property ;
               status:term_status "unstable"@en ;
+              status:term_status "inestable"@es ;
               rdfs:label "Saturday"@en ;
+              rdfs:label "sábado"@es ;
               rdfs:comment "Service is available on Saturday"@en ;
+              rdfs:comment "Servicio disponible los sábados"@es ;
               rdfs:range xsd:boolean .
 
 gtfs:sunday a rdf:Property ;
             status:term_status "unstable"@en ;
+            status:term_status "inestable"@es ;
             rdfs:label "Sunday"@en ;
+            rdfs:label "domingos"@es ;
             rdfs:comment "Service is available on Sunday"@en ;
+            rdfs:comment "Servicio disponible los domingos"@es ;
             rdfs:range xsd:boolean .
 
 gtfs:CalendarDateRule a rdfs:Class ;
                       status:term_status "unstable"@en ;
+                      status:term_status "inestable"@es ;
                       rdfs:subClassOf gtfs:ServiceRule ;
                       rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#calendar_dates_fields> ;
                       rdfs:label "Calendar date rule"@en ;
+                      rdfs:label "Regla de fecha de calendario"@es ;
                       rdfs:comment "Defines service availability for a specific date"@en ;
-                      gtfs:comment "a row from calendar_dates.txt"@en .
+                      rdfs:comment "Indica la disponibilidad de servicio para una fecha concreta"@es ;
+                      gtfs:comment "a row from calendar_dates.txt"@en ;
+                      gtfs:comment "una línea en calendar_dates.txt"@es .
 
 gtfs:dateAddition a rdf:Property ;
                   status:term_status "unstable"@en ;
+                  status:term_status "inestable"@es ;
                   gtfs:comment "The exception_type field in calendar_dates.txt - 1 is true, 2 is false."@en ;
+                  gtfs:comment "El campo exception_type en calendar_dates.txt - 1 es cierto, 2 es falso."@es ;
                   rdfs:label "Date Addition"@en ;
+                  rdfs:label "incorporación de fecha"@es ;
                   rdfs:comment "A boolean whether to add (true) or remove (false) a date"@en ;
+                  rdfs:comment "Booleano que indica si el servicio se ha agregado (cierto) o suprimido (falso) en la fecha especificada"@es ;
                   rdfs:domain gtfs:CalendarDateRule ;
                   rdfs:range xsd:boolean .
 
 gtfs:FareClass a rdfs:Class ;
                status:term_status "unstable"@en ;
+               status:term_status "inestable"@es ;
                rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#fare_attributes_fields> ,
                  <https://developers.google.com/transit/gtfs/reference#fare_rules_fields>,
                  <https://code.google.com/p/googletransitdatafeed/wiki/FareExamples> ;
                rdfs:subClassOf schema:PriceSpecification ;
                rdfs:label "Fare Class"@en ;
+               rdfs:label "Clase tarifaria"@es ;
                rdfs:comment "A class describing how the fare is calculated."@en ;
-               gtfs:comment "A gtfs:FareClass corresponds to a row in the fare_attributes.txt file."@en .
+					rdfs:comment "Describe como se calcula la tarifa."@es ;
+               gtfs:comment "A gtfs:FareClass corresponds to a row in the fare_attributes.txt file."@en ;
+               gtfs:comment "Una gtfs:FareClass corresponde a una línea en fare_attributes.txt."@es .
 
 gtfs:paymentMethod a rdf:Property ;
                    status:term_status "unstable"@en ;
+                   status:term_status "inestable"@es ;
                    rdfs:label "Payment method"@en ;
+                   rdfs:label "Método de pago"@es ;
                    rdfs:comment "The payment method"@en ;
+                   rdfs:comment "el método de pago"@es ;
                    gtfs:comment "payment_method field in fare_attributes. If 0, use gtfs:OnBoard; if 1, use gtfs:BeforeBoarding"@en ;
+                   gtfs:comment "Campo payment_method en fare_attributes. Si es 0, use gtfs:OnBoard; si es 1, use gtfs:BeforeBoarding"@es ;
                    rdfs:range gtfs:PaymentMethod ;
                    rdfs:domain gtfs:FareClass .
 
 gtfs:PaymentMethod a rdfs:Class ;
                    status:term_status "unstable"@en ;
+						 status:term_status "inestable"@es ;
                    rdfs:label "Payment Method"@en;
-                   rdfs:comment "Method to pay for the public transit service"@en .
+                   rdfs:label "Método de pago"@es;
+                   rdfs:comment "Method to pay for the public transit service"@en ;
+                   rdfs:comment "Método de pago para el servicio de transporte público"@es .
 
 gtfs:OnBoard a gtfs:PaymentMethod ;
              status:term_status "unstable"@en ;
+             status:term_status "inestable"@es ;
              rdfs:label "On Board"@en ;
-             rdfs:comment "Fare should be bought on board"@en .
+             rdfs:label "A bordo"@es ;
+             rdfs:comment "Fare should be bought on board"@en ;
+             rdfs:comment "La tarifa se paga a bordo"@es .
 
 gtfs:BeforeBoarding a gtfs:PaymentMethod ;
+						  status:term_status "unstable"@en ;
+             		  status:term_status "inestable"@es ;
                     rdfs:label "Before Boarding"@en ;
-                    rdfs:comment "Ticket should be bought before boarding"@en .
+                    rdfs:label "Antes de subir a bordo"@es ;
+                    rdfs:comment "Ticket should be bought before boarding"@en ;
+                    rdfs:comment "La tarifa se debe pagar antes de subir a bordo"@es .
 
 gtfs:transfers a rdf:Property ;
                status:term_status "unstable"@en ;
+					status:term_status "inestable"@es ;
                rdfs:domain gtfs:FareClass ;
                rdfs:label "Transfers"@en ;
+               rdfs:label "transbordos"@es ;
                rdfs:comment "The validity of the ticket when transferring"@en ;
+               rdfs:comment "Validez del ticket para transbordos"@es ;
                gtfs:comment "Map to 0 to gtfs:NoTransfersAllowed, 1 to gtfs:OneTransferAllowed, 2 to gtfs:TwoTransfersAllowed and empty to gtfs:UnlimitedTransfersAllowed"@en ;
+               gtfs:comment "Valor 0 si no se permite ningún transbordo (gtfs:NoTransfersAllowed), 1 si se puede realizar un transbordo (gtfs:OneTransferAllowed), 2 si se pueden realizar dos transbordos (gtfs:TwoTransfersAllowed) y deje el campo vacío si se permite una cantidad ilimitada de transbordos (gtfs:UnlimitedTransfersAllowed)"@es ;
                rdfs:range gtfs:TransfersAllowedType .
 
 gtfs:TransfersAllowedType a rdfs:Class ;
                           status:term_status "unstable"@en ;
+                          status:term_status "inestable"@es ;
                           rdfs:label "Transfers Allowed Type"@en ;
-                          rdfs:comment "Instances of this class describe whether tickets remain valid when transferring"@en .
+                          rdfs:label "Tipo de transbordo permitido"@es ;
+                          rdfs:comment "Instances of this class describe whether tickets remain valid when transferring"@en ;
+                          rdfs:comment "Las instancias de esta clase describen si los billetes son válidos para realizar transbordos"@es .
 
 gtfs:NoTransfersAllowed a gtfs:TransfersAllowedType ;
                         status:term_status "unstable"@en ;
+                        status:term_status "inestable"@es ;
                         rdfs:label "No transfers allowed"@en ;
-                        rdfs:comment "Indicate that a passenger should buy a new ticket when transferring"@en .
+                        rdfs:label "No se permiten transbordos"@es ;
+                        rdfs:comment "Indicate that a passenger should buy a new ticket when transferring"@en ;
+                        rdfs:comment "Indica que el pasajero debe comprar un nuevo billete para realizar un transbordo"@es .
 
 gtfs:OneTransfersAllowed a gtfs:TransfersAllowedType ;
                          status:term_status "unstable"@en ;
-                         rdfs:label "No transfers allowed"@en ;
-                         rdfs:comment "Indicate that a passenger should buy a new ticket when transferring a second time"@en .
+								 status:term_status "inestable"@es ;
+                         rdfs:label "One transfer allowed"@en ;
+                         rdfs:label "Un transbordo permitido"@es ;
+                         rdfs:comment "Indicate that a passenger should buy a new ticket when transferring a second time"@en ;
+                         rdfs:comment "Indica que el pasajero puede hacer un transbordo con su billete"@es .
 
 gtfs:TwoTransfersAllowed a gtfs:TransfersAllowedType;
                          status:term_status "unstable"@en ;
+								 status:term_status "inestable"@es ;
                          rdfs:label "Two transfers allowed"@en ;
-                         rdfs:comment "Indicate that a passenger should buy a new ticket when transferring for the third time"@en .
+                         rdfs:label "Dos transbordos permitidos"@es ;
+                         rdfs:comment "Indicate that a passenger should buy a new ticket when transferring for the third time"@en ;
+                         rdfs:comment "Indica que el pasajero puede hacer dos transbordos con su billete"@es .
 
 gtfs:UnlimitedTransfersAllowed a gtfs:TransfersAllowedType;
                                status:term_status "unstable"@en ;
+                               status:term_status "inestable"@es ;
                                rdfs:label "Unlimited transfers allowed"@en ;
-                               rdfs:comment "Indicate that a passenger should buy a new ticket when transferring for the third time"@en .
+                               rdfs:label "Transbordos ilimitados"@es ;
+                               rdfs:comment "Indicate that unlimited transfers are permitted"@en ;
+                               rdfs:comment "Indica que el billete permite una cantidad de transbordos ilimitada"@es .
 
 gtfs:transferExpiryTime a rdf:Property ;
                         status:term_status "unstable"@en ;
+                        status:term_status "inestable"@es ;
                         rdfs:label "Transfer Expiry Time"@en ;
-                        rdfs:comment "The time a ticket remains valid when having left the previous vehicle"@en .
+                        rdfs:label "Tiempo de validez para el transbordo"@es ;
+                        rdfs:comment "The time a ticket remains valid when having left the previous vehicle"@en ;
+                        rdfs:comment "El tiempo que el billete es válido desde que se abandona el vehículo para hacer un transbordo"@es .
 
 gtfs:FareRule a rdfs:Class ;
               status:term_status "unstable"@en ;
+              status:term_status "inestable"@es ;
               rdfs:label "Fare Rule"@en ;
-              rdfs:comment "A rule which binds a gtfs:FareClass to a part of the network."@en.
+				  rdfs:label "Regla tarifaria"@es ;
+              rdfs:comment "A rule which binds a gtfs:FareClass to a part of the network."@en;
+              rdfs:comment "Una regla que enlaza una clase tarifaria (gtfs:FareClass) a un zona de la red de transporte."@es.
 
 gtfs:originZone a rdf:Property ;
                 status:term_status "unstable"@en ;
+					 status:term_status "inestable"@es ;
                 rdfs:label "Origin Zone"@en ;
-                rdfs:comment "The origin zone where this applies"@en .
+                rdfs:label "zona de origen"@es ;
+                rdfs:comment "The origin zone where this applies"@en ;
+                rdfs:comment "La zona de origen donde una clase tarifaria se aplica"@es .
 
 gtfs:destinationZone a rdf:Property ;
                      status:term_status "unstable"@en ;
+                     status:term_status "inestable"@es ;
                      rdfs:label "Destination Zone"@en ;
-                     rdfs:comment "The destination zone where this applies"@en .
+                     rdfs:label "zona de destino"@es ;
+                     rdfs:comment "The destination zone where this applies"@en ;
+                     rdfs:comment "La zona de destino donde una clase tarifaria se aplica"@en .
 
 gtfs:Shape a rdfs:Class ;
            status:term_status "unstable"@en ;
+			  status:term_status "inestable"@es ;
            rdfs:label "Shape"@en ;
+           rdfs:label "forma del recorrido, trayecto, itinerario"@es ;
            rdfs:comment "A polygon formed by gtfs:ShapePoints"@en ;
+           rdfs:comment "Un polígono o línea formado por gtfs:ShapePoints"@es ;
            rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#shapes_fields> .
+           
 
 gtfs:shapePoint a rdf:Property ;
                 status:term_status "unstable"@en ;
+                status:term_status "inestable"@es ;
                 rdfs:label "Shape Point"@en ;
+                rdfs:label "punto de recorrido"@es ;
                 rdfs:comment "Links to a gtfs:ShapePoint"@en ;
+                rdfs:comment "Enlaza a gtfs:ShapePoint"@es ;
                 rdfs:domain gtfs:Shape ;
                 rdfs:range gtfs:ShapePoint .
 
 gtfs:ShapePoint a rdfs:Class ;
                 status:term_status "unstable"@en ;
+					 status:term_status "inestable"@es ;
                 rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#shapes_fields> ;
                 rdfs:label "Shape Point"@en ;
-                rdfs:comment "A geographic point within a gtfs:Shape"@en .
+                rdfs:label "Punto de recorrido"@es ;
+                rdfs:comment "A geographic point within a gtfs:Shape"@en ;
+                rdfs:comment "Punto geográfico dentro de un recorrido (gtfs:Shape)"@es .
 
 gtfs:pointSequence a rdf:Property ;
                    status:term_status "unstable"@en ;
+						 status:term_status "inestable"@es ;
                    rdfs:label "Point Sequence"@en ;
+                   rdfs:label "secuencia de puntos"@es ;
                    rdfs:comment "The shape_pt_sequence field associates the latitude and longitude of a shape point with its sequence order along the shape. The values for shape_pt_sequence must be non-negative integers, and they must increase along the trip."@en ;
+                   rdfs:comment "El campo shape_pt_sequence asocia la latitud y longitud de un punto de recorrido con su orden de secuencia en el recorrido. Los valores para shape_pt_sequence deben ser números enteros positivos y crecientes conforme avanza el viaje."@es ;
                    rdfs:domain gtfs:ShapePoint ;
                    rdfs:range xsd:nonNegativeInteger .
 
 gtfs:Frequency a rdfs:Class ;
                status:term_status "unstable"@en ;
+					status:term_status "inestable"@es ;
                rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#frequencies_fields> ;
                rdfs:label "Frequency"@en ;
-               rdfs:comment "An alternative to defining departures and arrivals as StopTimes: define frequencies for transit vehicle" .
+               rdfs:label "Frecuencia"@es ;
+               rdfs:comment "An alternative to defining departures and arrivals as StopTimes: define frequencies for transit vehicle"@en ;
+               rdfs:comment "Una alternativa a definir salidas y llegadas como StopTimes: definir frecuencias para vehículos de transporte público"@es .
 
 gtfs:startTime a rdf:Property ;
                status:term_status "unstable"@en ;
+					status:term_status "inestable"@es ;
                rdfs:label "Start Time"@en ;
+               rdfs:label "hora de inicio"@es ;
                rdfs:comment "Specifies the time at which service begins with the specified frequency"@en ;
+               rdfs:comment "Define la hora a la que empieza el servicio con la frecuencia especificada"@es ;
                rdfs:domain gtfs:Frequency ;
                rdfs:range xsd:string .
 
 gtfs:endTime a rdf:Property ;
              status:term_status "unstable"@en ;
+             status:term_status "inestable"@es ;
              rdfs:label "End Time"@en ;
-             rdfs:comment ""@en ;
+             rdfs:label "hora final"@es ;
+             rdfs:comment "Indicates the time at which service changes to a different frequency (or ceases) at the first stop in the trip."@en ;
+				 rdfs:comment "Define la hora a la que el servicio cambia de frecuencia (o bien finaliza) en la primera parada del viaje."@es ;
              rdfs:domain gtfs:Frequency ;
              rdfs:range xsd:string .
 
 gtfs:headwaySeconds a rdf:Property ;
                     status:term_status "unstable"@en ;
+                    status:term_status "inestable"@es ;
                     rdfs:label "Headway Seconds"@en ;
+                    rdfs:label "tiempo entre viajes"@es ;
                     rdfs:comment "Indicates the time between departures from the same stop (headway) for this trip type, during the time interval specified by gtfs:startTime and gtfs:endTime."@en ;
+                    rdfs:comment "Indica el período de tiempo (en segundos) entre salidas desde la misma parada (tiempo entre viajes) para este tipo de viaje, durante el intervalo de tiempo especificado mediante start_time y end_time."@es ;
                     rdfs:domain gtfs:Frequency ;
                     rdfs:range xsd:nonNegativeInteger .
 
 gtfs:usesExactTimes a rdf:Property;
                     status:term_status "unstable"@en ;
+						  status:term_status "inestable"@es ;
                     rdfs:label "Frequency uses exact times"@en ;
+                    rdfs:label "Viajes basados en frecuencias programados de manera exacta"@es ;
                     gtfs:comment "This is false when exact_times for this row is 0 or empty, true when it is 1"@en ;
+                    gtfs:comment "Determina si los viajes basados en frecuencias deben estar programados de manera exacta según la información especificada de tiempo entre viajes. Falso cuando exact_times es 0 (o vacío), verdadero cuando es uno 1"@es ;
                     rdfs:domain gtfs:Frequency ;
                     rdfs:range xsd:boolean .
 
 gtfs:TransferRule a rdfs:Class ;
                   status:term_status "unstable"@en ;
+                  status:term_status "inestable"@es ;
                   rdfs:label "Transfer Rule"@en ;
+                  rdfs:label "Regla de transbordo"@es ;
                   rdfs:comment "Define additional rules for making connections between routes."@en ;
+                  rdfs:comment "Define reglas adicionales para transbordos entre rutas."@es ;
                   rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#transfers_fields> .
 
 gtfs:originStop a rdf:Property ;
                 status:term_status "unstable"@en ;
+					 status:term_status "inestable"@es ;
                 rdfs:label "Origin Stop"@en ;
+                rdfs:label "parada de origen"@es ;
                 rdfs:comment "Link to gtfs:Stop to start from"@en ;
+                rdfs:comment "Enlace al gtfs:Stop desde el que empieza el viaje"@es ;
                 gtfs:comment "Map from from_stop_id in transfers.txt"@en;
+                gtfs:comment "Conectado a from_stop_id en transfers.txt"@es;
                 rdfs:range gtfs:Stop .
 
 gtfs:destinationStop a rdf:Property ;
                      status:term_status "unstable"@en ;
+                     status:term_status "inestable"@es ;
                      rdfs:label "Destination Stop"@en ;
+                     rdfs:label "parada de destino"@es ;
                      rdfs:comment "Link to gtfs:Stop to go to"@en ;
+							rdfs:comment "Enlace al gtfs:Stop hacia el que va el viaje"@es ;
                      gtfs:comment "Map from to_stop_id in transfers.txt"@en;
+                     gtfs:comment "Conectado a to_stop_id en transfers.txt"@es;
                      rdfs:range gtfs:Stop .
 
 gtfs:transferType a rdf:Property ;
                   status:term_status "unstable"@en ;
+						status:term_status "inestable"@es ;
                   rdfs:label "Transfer Type"@en ;
+                  rdfs:label "tipo de transbordo"@es ;
                   rdfs:domain gtfs:Transfer ;
                   rdfs:range gtfs:TransferType .
 
 gtfs:TransferType a rdfs:Class ;
                   status:term_status "unstable"@en ;
+                  status:term_status "inestable"@es ;
                   rdfs:label "Transfer Type"@en ;
+                  rdfs:label "Tipo de transbordo"@es ;
                   rdfs:comment "Instances of this class can be used to describe how to handle a transfer rule"@en ;
-                  gtfs:comment "When transfer_type in transfers.txt is 0 or empty, map to gtfs:RecommendedTransfer, when 1, map to gtfs:EnsuredTransfer, when 2, gtfs:MinimumTimeTransfer, when 3: gtfs:NoTransfer."@en .
+                  rdfs:comment "Instancias de esta clase pueden ser usadas para describir cómo gestionar las reglas de transbordo"@es ;
+                  gtfs:comment "When transfer_type in transfers.txt is 0 or empty, map to gtfs:RecommendedTransfer, when 1, map to gtfs:EnsuredTransfer, when 2, gtfs:MinimumTimeTransfer, when 3: gtfs:NoTransfer."@en ;
+                  gtfs:comment "Si transfer_type en transfers.txt es 0 o vacío, mapee a gtfs:RecommendedTransfer; si es 1, mapee to gtfs:EnsuredTransfer; si es 2, a gtfs:MinimumTimeTransfer; si es 3, a gtfs:NoTransfer"@es .
+                  
 
 gtfs:RecommendedTransfer a gtfs:TransferType ;
                          status:term_status "unstable"@en ;
+                         status:term_status "inestable"@es ;
                          rdfs:label "Recommended Transfer"@en ;
-                         rdfs:comment "This is a recommended transfer point between two routes"@en .
+                         rdfs:label "Punto de transbordo recomendado"@es ;
+                         rdfs:comment "This is a recommended transfer point between two routes"@en ;
+                         rdfs:comment "Este es un punto de transbordo recomendado entre dos rutas"@es .
 
 gtfs:EnsuredTransfer a gtfs:TransferType ;
                      status:term_status "unstable"@en ;
+                     status:term_status "inestable"@es ;
                      rdfs:label "Ensured Transfer"@en ;
-                     rdfs:comment "This is a timed transfer point between two routes. The departing vehicle is expected to wait for the arriving one, with sufficient time for a passenger to transfer between routes."@en .
+                     rdfs:label "Punto de transbordo sincronizado"@es ;
+                     rdfs:comment "This is a timed transfer point between two routes. The departing vehicle is expected to wait for the arriving one, with sufficient time for a passenger to transfer between routes."@en ;
+                     rdfs:comment "Este es un punto de transbordo sincronizado entre dos rutas. El vehículo que sale espera al que llega, dejando tiempo suficiente para que un pasajero haga transbordo entre rutas."@es .
 
 gtfs:MinimumTimeTransfer a gtfs:TransferType ;
                          status:term_status "unstable"@en ;
-                         rdfs:label "Mimimum Time Transfer"@en ;
-                         rdfs:comment "This transfer requires a minimum amount of time between arrival and departure to ensure a connection. The time required to transfer is specified by gtfs:minimumTransferTime"@en .
+								 status:term_status "inestable"@es ;
+                         rdfs:label "Minimum Time Transfer"@en ;
+                         rdfs:label "Mínimo tiempo de transbordo"@es ;
+                         rdfs:comment "This transfer requires a minimum amount of time between arrival and departure to ensure a connection. The time required to transfer is specified by gtfs:minimumTransferTime"@en ;
+                         rdfs:comment "Este transbordo requiere una cantidad mínima de tiempo entre la llegada y la salida para garantizar la conexión. El tiempo necesario para el transbordo se especifica mediante min_transfer_time"@es .
 
 gtfs:minimumTransferTime a rdf:Property ;
                          status:term_status "unstable"@en ;
+								 status:term_status "inestable"@es ;
                          rdfs:label "Minimum Transfer Time"@en ;
+                         rdfs:label "Tiempo mínimo de transbordo"@es ;
                          rdfs:comment "The minimum transfer time when the gtfs:transferType is gtfs:MinimumTimeTransfer."@en ;
+                         rdfs:comment "El tiempo mínimo de transbordo cuando gtfs:transferType es gtfs:MinimumTimeTransfer."@es ;
                          rdfs:domain gtfs:TransferRule ;
                          rdfs:range xsd:nonNegativeInteger .
 
 gtfs:NoTransfer a gtfs:TransferType ;
                 status:term_status "unstable"@en ;
+                status:term_status "inestable"@es ;
                 rdfs:label "No Transfer"@en ;
-                rdfs:comment "Transfers are not possible between routes at this location."@en .
+                rdfs:label "Sin transbordo"@es ;
+                rdfs:comment "Transfers are not possible between routes at this location."@en ;
+                rdfs:comment "No es posible realizar transbordos entre rutas en esta ubicación."@es .
 
 gtfs:comment a rdf:Property ;
              status:term_status "unstable"@en ;
+             status:term_status "inestable"@es ;
              rdfs:subPropertyOf rdfs:comment ;
              rdfs:label "Mapping comment"@en ;
-             rdfs:comment "A comment on the relation between the RDFS ontology and the CSV specification."@en .
+             rdfs:label "Comentario de enlace"@es ;
+             rdfs:comment "A comment on the relation between the RDFS ontology and the CSV specification."@en ;
+             rdfs:comment "Un comentario entre la relación entre la ontología RDFS y la especificación CSV."@es .
+             
