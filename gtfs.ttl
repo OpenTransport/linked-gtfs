@@ -492,7 +492,7 @@ gtfs:DropOffType a rdfs:Class ;
 					  status:term_status "inestable"@es ;
                  rdfs:label "Drop Off Type"@en ;
                  rdfs:label "Tipo de bajada"@es ;
-                 rdfs:comment "Instances of this class can be used by gtfs:dropOffType"@en .
+                 rdfs:comment "Instances of this class can be used by gtfs:dropOffType"@en ;
                  rdfs:comment "Instancias de esta clase pueden ser usadas por gtfs:dropOffType. Indica si los pasajeros se bajan en una parada como parte del horario normal o si no pueden bajar en esa parada."@es;
 
 gtfs:Regular a gtfs:PickupType, gtfs:DropOffType ;
