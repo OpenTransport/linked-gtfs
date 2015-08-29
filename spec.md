@@ -53,9 +53,9 @@ _Mandatory properties_:
  * [foaf:name](http://xmlns.com/foaf/0.1/name) - The name of the stop
  * [geo:long](http://www.w3.org/2003/01/geo/wgs84_pos#long), [geo:lat](http://www.w3.org/2003/01/geo/wgs84_pos#lat) - longitude an latitude in WGS84
 
-
 _Optional properties_:
- * [dct:identifier](http://purl.org/dc/terms/identifier) - a "code": short text or a number that uniquely identifies the stop for passengers. They are often used in phone-based transit information systems or printed on stop signage to make it easier for riders to get a stop schedule or real-time arrival information for a particular stop.
+ * [dct:identifier](http://purl.org/dc/terms/identifier) - original local identifier within the GTFS ZIP file
+ * [gtfs:code](http://vocab.gtfs.org/terms#code) - a "code": short text or a number that uniquely identifies the stop for passengers. They are often used in phone-based transit information systems or printed on stop signage to make it easier for riders to get a stop schedule or real-time arrival information for a particular stop.
  * [dct:description](http://purl.org/dc/terms/description) - quality information (sic) describing a stop
  * [gtfs:zone](http://vocab.gtfs.org/terms#zone) - defines the fare zone. Zones are required if you want to provide fare information using a [gtfs:FareClass](http://vocab.gtfs.org/terms#FareClass).
  * [foaf:page](http://xmlns.com/foaf/0.1/page) - a page of the stop with more information
@@ -137,8 +137,8 @@ _Optional properties_:
 _Mandatory properties_:
 
  * [gtfs:Trip](http://vocab.gtfs.org/terms#Trip) - link to a trip it is part of
- * [gtfs:arrivalTime](http://vocab.gtfs.org/terms#arrivalTime) - arrival time given as a time calculated starting at noon minus 12h in this format "hh:mm"
- * [gtfs:departureTime](http://vocab.gtfs.org/terms#departureTime) - departure time given as a time calculated starting at noon minus 12h in this format "hh:mm"
+ * [gtfs:arrivalTime](http://vocab.gtfs.org/terms#arrivalTime) - arrival time given as a __duration__ calculated starting at noon minus 12h in this format "hh:mm"
+ * [gtfs:departureTime](http://vocab.gtfs.org/terms#departureTime) - departure time given as a __duration__ calculated starting at noon minus 12h in this format "hh:mm"
  * [gtfs:stop](http://vocab.gtfs.org/terms#stop) - stop
  * [gtfs:stopSequence](http://vocab.gtfs.org/terms#stopSequence) - The [gtfs:stopSequence](http://vocab.gtfs.org/terms#stopSequence) property identifies the order of the stops for a particular trip. The values must increase along the [gtfs:Trip](http://vocab.gtfs.org/terms#Trip) referenced in the [gtfs:trip](http://vocab.gtfs.org/terms#trip) property.
 

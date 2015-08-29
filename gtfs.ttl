@@ -85,6 +85,13 @@ gtfs:Stop a rdfs:Class;
           rdfs:comment "Un lugar donde los pasajeros suben o bajan de un vehículo de transporte público."@es ;
           rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stops_fields> .
 
+gtfs:code a rdf:Property ;
+            status:term_status "unstable"@en ;
+            rdfs:label "Stop Code"@en ;
+            rdfs:comment "A gtfs:code predicate defines the stop code for a stop."@en ;
+            gtfs:comment "This is the stop_code field"@en ;
+            rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stops_fields> .
+
 gtfs:zone a rdf:Property ;
             status:term_status "unstable"@en ;
             status:term_status "inestable"@es ;
