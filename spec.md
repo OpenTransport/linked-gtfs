@@ -9,7 +9,7 @@
 | rdfs:| `http://www.w3.org/2000/01/rdf-schema#`|
 | foaf:| `http://xmlns.com/foaf/0.1/`|
 | schema:| `http://schema.org/`|
-| geo:| 'http://www.w3.org/2003/01/geo/wgs84_pos#' |
+| geo:| `http://www.w3.org/2003/01/geo/wgs84_pos#` |
 
 ### [gtfs:Feed](http://vocab.gtfs.org/terms#Feed)
 
@@ -99,8 +99,8 @@ _Mandatory properties_:
 _Optional properties_:
  * [dct:description](http://purl.org/dc/terms/description) - The route_desc field contains a description of a route. Please provide useful, quality information. Do not simply duplicate the name of the route. For example, "A trains operate between Inwood-207 St, Manhattan and Far Rockaway-Mott Avenue, Queens at all times. Also from about 6AM until about midnight, additional A trains operate between Inwood-207 St and Lefferts Boulevard (trains typically alternate between Lefferts Blvd and Far Rockaway)."
  * [gtfs:routeUrl](http://vocab.gtfs.org/terms#routeUrl) - The route_url field contains the URL of a web page about that particular route. This should be different from the agency_url.
- * route:color - In systems that have colors assigned to routes, the route:color field defines a color that corresponds to a route. The color must be provided as a six-character hexadecimal number, for example, 00FFFF. If no color is specified, the default route:color is white (FFFFFF).
- * route:textColor - The textColor property can be used to specify a legible color to use for text drawn against a background of route_color. The color must be provided as a six-character hexadecimal number, for example, FFD700. If no color is specified, the default text color is black (000000).
+ * [gtfs:color](http://vocab.gtfs.org/terms#color) - In systems that have colors assigned to routes, the gtfs:color field defines a color that corresponds to a route. The color must be provided as a six-character hexadecimal number, for example, 00FFFF. If no color is specified, the default route:color is white (FFFFFF).
+ * [gtfs:textColor](http://vocab.gtfs.org/terms#textColor) - The textColor property can be used to specify a legible color to use for text drawn against a background of route_color. The color must be provided as a six-character hexadecimal number, for example, FFD700. If no color is specified, the default text color is black (000000).
 
 ### gtfs:RouteType
 
