@@ -133,11 +133,11 @@ _Optional properties_:
  * [gtfs:wheelchairAccessible](http://vocab.gtfs.org/terms#wheelchairAccessible) - whether the trip can be accessed by 1 or more wheelchairs.
  * [gtfs:bikesAllowed](http://vocab.gtfs.org/terms#bikesAllowed) - bikes allowed or not (xsd:boolean)
 
-### gtfs:StopTime
+### [gtfs:StopTime](http://vocab.gtfs.org/terms#StopTime)
 
 _Mandatory properties_:
 
- * [gtfs:Trip](http://vocab.gtfs.org/terms#Trip) - link to a trip it is part of
+ * [gtfs:trip](http://vocab.gtfs.org/terms#trip) - link to a trip it is part of
  * [gtfs:arrivalTime](http://vocab.gtfs.org/terms#arrivalTime) - arrival time given as a __duration__ calculated starting at noon minus 12h in this format "hh:mm"
  * [gtfs:departureTime](http://vocab.gtfs.org/terms#departureTime) - departure time given as a __duration__ calculated starting at noon minus 12h in this format "hh:mm"
  * [gtfs:stop](http://vocab.gtfs.org/terms#stop) - stop
