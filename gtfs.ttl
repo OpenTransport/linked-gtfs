@@ -10,7 +10,7 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix cc: <http://creativecommons.org/ns#> .
-@prefix status: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix status: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .a
 @prefix schema: <http://schema.org/> .
 #the deprecated vocabulary we're still linking to - https://github.com/iand/vocab-transit/issues/4
 @prefix transit: <http://vocab.org/transit/terms/> .
@@ -425,7 +425,8 @@ gtfs:arrivalTime a rdf:Property ;
                  rdfs:comment "Check the original specification for special cases"@en ;
                  rdfs:comment "Compruebe la especificación original para casos especiales"@es ;
                  rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stop_times_fields> ;
-                 rdfs:domain gtfs:StopTime .
+                 rdfs:domain gtfs:StopTime ;
+                 rdfs:range xsd:duration .
 
 gtfs:departureTime a rdf:Property ;
                    status:term_status "unstable"@en ;
@@ -435,7 +436,8 @@ gtfs:departureTime a rdf:Property ;
                    rdfs:comment "Check the original specification for special cases"@en ;
                    rdfs:comment "Compruebe la especificación original para casos especiales"@es ;
                    rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stop_times_fields> ;
-                   rdfs:domain gtfs:StopTime .
+                   rdfs:domain gtfs:StopTime ;
+                   rdfs:range xsd:duration .
 
 gtfs:stopSequence a rdf:Property ;
                   status:term_status "unstable"@en ;
