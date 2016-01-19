@@ -425,7 +425,8 @@ gtfs:arrivalTime a rdf:Property ;
                  rdfs:comment "Check the original specification for special cases"@en ;
                  rdfs:comment "Compruebe la especificación original para casos especiales"@es ;
                  rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stop_times_fields> ;
-                 rdfs:domain gtfs:StopTime .
+                 rdfs:domain gtfs:StopTime ;
+                 rdfs:range xsd:duration .
 
 gtfs:departureTime a rdf:Property ;
                    status:term_status "unstable"@en ;
@@ -435,7 +436,8 @@ gtfs:departureTime a rdf:Property ;
                    rdfs:comment "Check the original specification for special cases"@en ;
                    rdfs:comment "Compruebe la especificación original para casos especiales"@es ;
                    rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stop_times_fields> ;
-                   rdfs:domain gtfs:StopTime .
+                   rdfs:domain gtfs:StopTime ;
+                   rdfs:range xsd:duration .
 
 gtfs:stopSequence a rdf:Property ;
                   status:term_status "unstable"@en ;
