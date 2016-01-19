@@ -10,7 +10,7 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix cc: <http://creativecommons.org/ns#> .
-@prefix status: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .a
+@prefix status: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix schema: <http://schema.org/> .
 #the deprecated vocabulary we're still linking to - https://github.com/iand/vocab-transit/issues/4
 @prefix transit: <http://vocab.org/transit/terms/> .
