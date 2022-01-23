@@ -77,13 +77,14 @@ gtfs:fareUrl a rdf:Property ;
              rdfs:domain gtfs:Agency .
 
 gtfs:Stop a rdfs:Class;
-          status:term_status "stable"@en ;
-          status:term_status "estable"@es ;
-          rdfs:label "Stop"@en ;
-          rdfs:label "Parada"@es ;
-          rdfs:comment "A location where passengers board or disembark from a transit vehicle."@en ;
-          rdfs:comment "Un lugar donde los pasajeros suben o bajan de un vehículo de transporte público."@es ;
-          rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stops_fields> .
+            rdfs:subClassOf gtfs:Location ;
+            status:term_status "stable"@en ;
+            status:term_status "estable"@es ;
+            rdfs:label "Stop"@en ;
+            rdfs:label "Parada"@es ;
+            rdfs:comment "A stop is a physical location where a vehicle stops or leaves. Multiple routes may use the same stop."@en ;
+            rdfs:comment "Un lugar donde los pasajeros suben o bajan de un vehículo de transporte público."@es ;
+            rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stops_fields> .
 
 gtfs:code a rdf:Property ;
             status:term_status "unstable"@en ;
@@ -116,20 +117,22 @@ gtfs:parentStation a rdf:Property ;
                    rdfs:domain gtfs:Stop .
 
 gtfs:Zone a rdfs:Class ;
+          rdfs:subClassOf gtfs:Location ;
           status:term_status "unstable"@en ;
           status:term_status "inestable"@es ;
           rdfs:label "Zone"@en ;
 			 rdfs:label "Zona"@es ;
-          rdfs:comment "Zones are required if you want to provide fare information using gtfs:FareClass"@en ;
+          rdfs:comment "Zones are required if you want to provide fare information using gtfs:FareClass. It is a space within a stop for which a specific fare applies."@en ;
           rdfs:comment "Las zonas son necesarias si quiere proporcionar información de tarifas usando gtfs:FareClass"@es .
 
 gtfs:Station a rdfs:Class ;
+             rdfs:subClassOf gtfs:Location ;
              status:term_status "unstable"@en ;
              status:term_status "inestable"@es ;
              rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#stops_fields> ;
              rdfs:label "Station"@en ;
              rdfs:label "Estación"@es ;
-             rdfs:comment "A physical structure or area that contains one or more stop."@en ;
+             rdfs:comment "A physical structure or area that contains one or more platform."@en ;
              rdfs:comment "Estructura física o área que contiene una o más paradas."@es ;
              gtfs:comment "Map a row in stops.txt to gtfs:Station when the location_type is 1."@en ;
              gtfs:comment "Mapee una línea en stops.txt a gtfs:Station cuando location_type sea 1."@es .
@@ -303,20 +306,20 @@ gtfs:Ferry a gtfs:RouteType ;
            rdfs:comment "Used for short- and long-distance boat service."@en ;
            rdfs:comment "Utilizado para servicio de transporte público fluvial o marítimo de corta y larga distancia."@es .
 
+gtfs:CableTram a gtfs:RouteType ;
+              status:term_status "unstable"@en ;
+              status:term_status "inestable"@es ;
+              rdfs:label "Cable Tram"@en ;
+              rdfs:label "Funicular"@es ;
+              rdfs:comment "Used for street-level rail cars where the cable runs beneath the vehicle."@en ;
+              rdfs:comment "Utilizado para funiculares en superficie en donde el cable pasa por debajo del vehículo."@es .
+
 gtfs:CableCar a gtfs:RouteType ;
               status:term_status "unstable"@en ;
               status:term_status "inestable"@es ;
-              rdfs:label "Cable car"@en ;
-              rdfs:label "Funicular"@es ;
-              rdfs:comment "Used for street-level cable cars where the cable runs beneath the car."@en ;
-              rdfs:comment "Utilizado para funiculares en superficie en donde el cable pasa por debajo del vehículo."@es .
-
-gtfs:Gondola a gtfs:RouteType ;
-              status:term_status "unstable"@en ;
-              status:term_status "inestable"@es ;
-              rdfs:label "Gondola, Suspended cable car"@en ;
+              rdfs:label "Aerial lift, suspended cable car (e.g., gondola lift, aerial tramway)"@en ;
               rdfs:label "Teleférico, telecabina"@es ;
-              rdfs:comment "Gondola, Suspended cable car. Typically used for aerial cable cars where the car is suspended from the cable."@en ;
+              rdfs:comment "Cable transport where cabins, cars, gondolas or open chairs are suspended by means of one or more cables."@en ;
               rdfs:comment "Normalmente se utiliza para medios de transporte público por cable en donde el vehículo queda suspendido de un cable."@es .
 
 gtfs:Funicular a gtfs:RouteType ;
@@ -496,6 +499,15 @@ gtfs:PickupType a rdfs:Class ;
                 rdfs:comment "Instances of this class can be used by gtfs:pickupType"@en ;
                 rdfs:comment "Instancias de esta clase pueden ser usadas por gtfs:pickupType. Indica si se recogen los pasajeros en una parada como parte del horario normal o si su recogida en dicha parada no se encuentra disponible. Este campo también permite a la empresa de transporte público indicar que los pasajeros deben llamar a la empresa o notificar al conductor que es necesario recogerlos en esa parada en concreto. Los valores válidos para este campo son: 0 - recogida programada regularmente; 1 - recogida no disponible; 2 - se debe llamar a la empresa para organizar una recogida; 3 - se debe coordinar con el conductor para organizar una recogida. El valor predeterminado de este campo es 0."@es .
 
+gtfs:ContinuousPickup a rdfs:Class ;
+                      rdfs:subClassOf gtfs:PickupType ;
+                      rdfs:label "Continuous Pickup"@en ; 
+                      rdfs:comment "A type of pickup where a rider can board the transit vehicle anywhere along the vehicle’s travel path."@en .
+
+gtfs:SinglePickup a rdfs:Class ;
+                  rdfs:subClassOf gtfs:PickupType;
+                  rdfs:label "Single Pickup"@en .
+
 gtfs:DropOffType a rdfs:Class ;
                  status:term_status "unstable"@en ;
 					  status:term_status "inestable"@es ;
@@ -504,7 +516,16 @@ gtfs:DropOffType a rdfs:Class ;
                  rdfs:comment "Instances of this class can be used by gtfs:dropOffType"@en ;
                  rdfs:comment "Instancias de esta clase pueden ser usadas por gtfs:dropOffType. Indica si los pasajeros se bajan en una parada como parte del horario normal o si no pueden bajar en esa parada."@es.
 
-gtfs:Regular a gtfs:PickupType, gtfs:DropOffType ;
+gtfs:ContinuousDropOff a rdfs:Class ;
+                       rdfs:subClassOf gtfs:DropOffType ; 
+                       rdfs:label "Continuous Drop Off"@en ;
+                       rdfs:comment "A type of drop off where a rider can alight the vehicle anywhere along the vehicle's travel path."@en .
+
+gtfs:SingleDropOff a rdfs:Class ;
+                   rdfs:subClassOf gtfs:DropOffType ;
+                   rdfs:label "Single Drop Off"@en .
+
+gtfs:Regular a gtfs:SinglePickup, gtfs:SingleDropOff ;
              status:term_status "unstable"@en ;
              status:term_status "inestable"@es ;
              rdfs:label "Regularly scheduled pickup or drop off"@en ;
@@ -512,23 +533,35 @@ gtfs:Regular a gtfs:PickupType, gtfs:DropOffType ;
              gtfs:comment "If no pickup_type or drop_off_type given in stop_times.txt, map to this one."@en ;
              gtfs:comment "Si no se incluye pickup_type o drop_off_type en stop_times.txt, mapee a este concepto."@es .
 
-gtfs:NotAvailable a gtfs:PickupType, gtfs:DropOffType ;
+gtfs:NotAvailable a gtfs:SinglePickup, gtfs:SingleDropOff ;
                   status:term_status "unstable"@en ;
                   status:term_status "inestable"@es ;
                   rdfs:label "Pickup or drop off not available"@en ;
                   rdfs:label "Sin parada disponible"@es .
 
-gtfs:MustPhone a gtfs:PickupType, gtfs:DropOffType ;
+gtfs:MustPhone a gtfs:SinglePickup, gtfs:SingleDropOff ;
                status:term_status "unstable"@en ;
                status:term_status "inestable"@es ;
                rdfs:label "Must phone agency to arrange pickup or drop off"@en ;
                rdfs:label "Se debe llamar a la empresa para organizar la parada."@es .
 
-gtfs:MustCoordinateWithDriver a gtfs:PickupType, gtfs:DropOffType ;
+gtfs:MustCoordinateWithDriver a gtfs:SinglePickup, gtfs:SingleDropOff ;
                               status:term_status "unstable"@en ;
                               status:term_status "inestable"@es ;
                               rdfs:label "Must coordinate with driver to arrange pickup or drop off"@en ;
                               rdfs:label "Se debe pedir al conductor que pare."@es .
+
+gtfs:ContinuousAvailable a gtfs:ContinuousPickup, gtfs:ContinuousDropOff ;
+                              rdfs:label "Continuous pickup or drop off is available"@en .
+
+gtfs:ContinuousNotAvailable a gtfs:ContinuousPickup, gtfs:ContinuousDropOff ;
+                              rdfs:label "Continuous pickup or drop off not available"@en .
+
+gtfs:MustPhoneForContinuous a gtfs:ContinuousPickup, gtfs:ContinuousDropOff ;
+                              rdfs:label "Must phone agency to arrange continuous pickup or drop off"@en .
+
+gtfs:MustCoordinateWithDriverForContinuous a gtfs:ContinuousPickup, gtfs:ContinuousDropOff ;
+                              rdfs:label "Must coordinate with driver to arrange continuous pickup or drop off"@en .
 
 gtfs:Service a rdfs:Class ;
              status:term_status "unstable"@en ;
@@ -536,7 +569,7 @@ gtfs:Service a rdfs:Class ;
              rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#calendar_fields> , <https://developers.google.com/transit/gtfs/reference#calendar_dates_fields> ;
              rdfs:label "Service"@en ;
              rdfs:label "Servicio"@es ;
-             rdfs:comment "A gtfs:Service identifies a set of dates when a service is available for one or more routes"@en ;
+             rdfs:comment "Service dates specified using a weekly schedule with start and end dates."@en ;
              rdfs:comment "Un gtfs:Service indica el conjunto de fechas en el que el servicio está disponible para una o más rutas"@es ;
              gtfs:comment "A gtfs:Service is a set of gtfs:ServiceRules which can be found in both calendar.txt as calendar_dates.txt"@en ;
              gtfs:comment "Un gtfs:Service es un conjunto de gtfs:ServiceRules que pueden ser encontradas en calendar.txt y calendar_dates.txt"@es .
@@ -548,27 +581,8 @@ gtfs:serviceRule a rdf:Property ;
                  rdfs:label "regla de servicio"@es ;
                  rdfs:comment "Service rules which define together a set of dates"@en ;
                  rdfs:comment "Reglas de servicio que definen un conjunto de fechas"@es ;
-                 rdfs:range gtfs:ServiceRule ;
+               #   rdfs:range gtfs:ServiceRule ;
                  rdfs:domain gtfs:Service .
-
-gtfs:ServiceRule a rdfs:Class ;
-                 status:term_status "unstable"@en ;
-					  status:term_status "inestable"@es ;
-                 rdfs:label "Service rule"@en ;
-                 rdfs:label "Regla de servicio"@es ;
-                 rdfs:comment "One or more service rules define a set of dates"@en ;
-                 rdfs:comment "Una o más reglas de servicio definen un conjunto de fechas"@es .
-
-gtfs:CalendarRule a rdfs:Class ;
-                  status:term_status "unstable"@en ;
-                  status:term_status "inestable"@es ;
-                  rdfs:subClassOf gtfs:ServiceRule ;
-                  rdfs:label "Calendar rule"@en;
-                  rdfs:label "Regla de calendario"@es;
-                  rdfs:comment "Defines on which days of the week for a certain period the service is available."@en ;
-                  rdfs:comment "Define en qué días de la semana el servicio está disponible para un periodo concreto."@es ;
-                  gtfs:comment "a row from calendar.txt"@en ;
-                  gtfs:comment "una línea de calendar.txt"@es .
 
 gtfs:monday a rdf:Property ;
             status:term_status "unstable"@en ;
@@ -636,11 +650,10 @@ gtfs:sunday a rdf:Property ;
 gtfs:CalendarDateRule a rdfs:Class ;
                       status:term_status "unstable"@en ;
                       status:term_status "inestable"@es ;
-                      rdfs:subClassOf gtfs:ServiceRule ;
                       rdfs:seeAlso <https://developers.google.com/transit/gtfs/reference#calendar_dates_fields> ;
                       rdfs:label "Calendar date rule"@en ;
                       rdfs:label "Regla de fecha de calendario"@es ;
-                      rdfs:comment "Defines service availability for a specific date"@en ;
+                      rdfs:comment "Defines exceptions for the services defined in gtfs:Service."@en ;
                       rdfs:comment "Indica la disponibilidad de servicio para una fecha concreta"@es ;
                       gtfs:comment "a row from calendar_dates.txt"@en ;
                       gtfs:comment "una línea en calendar_dates.txt"@es .
@@ -940,7 +953,7 @@ gtfs:RecommendedTransfer a gtfs:TransferType ;
 gtfs:EnsuredTransfer a gtfs:TransferType ;
                      status:term_status "unstable"@en ;
                      status:term_status "inestable"@es ;
-                     rdfs:label "Ensured Transfer"@en ;
+                     rdfs:label "Ensured Transfer or Timed Transfer"@en ;
                      rdfs:label "Punto de transbordo sincronizado"@es ;
                      rdfs:comment "This is a timed transfer point between two routes. The departing vehicle is expected to wait for the arriving one, with sufficient time for a passenger to transfer between routes."@en ;
                      rdfs:comment "Este es un punto de transbordo sincronizado entre dos rutas. El vehículo que sale espera al que llega, dejando tiempo suficiente para que un pasajero haga transbordo entre rutas."@es .
@@ -980,3 +993,85 @@ gtfs:comment a rdf:Property ;
              rdfs:comment "A comment on the relation between the RDFS ontology and the CSV specification."@en ;
              rdfs:comment "Un comentario entre la relación entre la ontología RDFS y la especificación CSV."@es .
              
+gtfs:Attribution a rdfs:Class ;
+                  rdfs:label "Attribution"@en ;
+                  rdfs:comment "Identifies an attribution for the dataset, or a subset of it. This field is useful for translations."@en .
+                 
+
+gtfs:Block a rdfs:Class ;
+            rdfs:label "Block"@en;
+            rdfs:comment "A block consists of a single trip or many sequential trips made using the same vehicle, defined by shared service days and block ID."@en .
+      
+gtfs:Level a rdfs:Class ;
+            rdfs:label "Level"@en;
+            rdfs:comment "Describes the different levels (e.g. Mezzanine” or the “Platform” level) of a station. Is mostly useful when used in conjunction with gtfs:Pathway."@en .
+
+gtfs:Location a rdfs:Class ;
+                  rdfs:label "Location"@en ;
+                  rdfs:comment "A location is a geographical point that has a latitude and a longitude."@en .
+
+gtfs:BoardingArea a rdfs:Class ;
+                  rdfs:subClassOf gtfs:Location ;
+                  rdfs:label "Boarding Area"@en ;
+                  rdfs:comment "A specific location on a platform, where passengers can board and/or alight vehicles."@en .
+
+gtfs:GenericNode a rdfs:Class ;
+                  rdfs:subClassOf gtfs:Location ;
+                  rdfs:label "Generic Node"@en ;
+                  rdfs:comment "A location within a station, not matching any other location type, which can be used to link together pathways."@en .
+
+gtfs:Platform a rdfs:Class ;
+                  rdfs:subClassOf gtfs:Location ;
+                  rdfs:label "Platform"@en ;
+                  rdfs:comment "A stop existing inside a station."@en .
+
+gtfs:StationEntrance a rdfs:Class ;
+                  rdfs:subClassOf gtfs:Location ;
+                  rdfs:label "Station Entrance"@en ;
+                  rdfs:comment "A location where passengers can enter or exit a station from the street. If an entrance/exit belongs to multiple stations, it can be linked by pathways to both, but the data provider must pick one of them as parent."@en .
+
+gtfs:Pathway a rdfs:Class ;
+            rdfs:label "Pathway"@en;
+            rdfs:comment "A pathway links together locations within stations."@en .
+
+gtfs:Elevator a gtfs:Pathway ;
+                rdfs:label "Elevator"@en .
+
+gtfs:Escalator a gtfs:Pathway ;
+                rdfs:label "Escalator"@en .
+
+gtfs:ExitGate a gtfs:Pathway ;
+                rdfs:label "Exit Gate"@en ;
+                rdfs:comment "Indicates a pathway exiting an area where proof-of-payment is required into an area where proof-of-payment is no longer required."@en .
+
+gtfs:FareGate a gtfs:Pathway ;
+                rdfs:label "Fare Gate"@en ;
+                rdfs:comment "A pathway that crosses into an area of the station where a proof of payment is required (usually via a physical payment gate). Fare gates may either separate paid areas of the station from unpaid ones, or separate different payment areas within the same station from each other. This information can be used to avoid routing passengers through stations using shortcuts that would require passengers to make unnecessary payments, like directing a passenger to walk through a subway platform to reach a busway."@en .
+
+gtfs:MovingSidewalk a gtfs:Pathway ;
+                      rdfs:label "Moving Sidewalk or Travelator"@en .
+
+gtfs:Stairs a gtfs:Pathway ;
+                rdfs:label "Stairs"@en .
+               
+gtfs:Walkway a gtfs:Pathway ;
+                rdfs:label "Walkway"@en .
+
+gtfs:Monorail a gtfs:RouteType ;
+                rdfs:label "Monorail"@en ;
+                rdfs:comment "Railway in which the track consists of a single rail or a beam."@en .
+
+gtfs:Trolleybus a gtfs:RouteType ;
+                rdfs:label "Trolleybus"@en ;
+                rdfs:comment "Electric buses that draw power from overhead wires using poles."@en .
+
+gtfs:Translation a rdfs:Class ;
+            rdfs:label "Translation"@en;
+            rdfs:comment "Translated information of a transit agency."@en .
+
+
+
+
+
+
+
