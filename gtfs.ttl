@@ -12,6 +12,7 @@
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix status: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix schema: <http://schema.org/> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
 #the deprecated vocabulary we're still linking to - https://github.com/iand/vocab-transit/issues/4
 @prefix transit: <http://vocab.org/transit/terms/> .
 
@@ -312,7 +313,8 @@ gtfs:CableTram a gtfs:RouteType ;
               rdfs:label "Cable Tram"@en ;
               rdfs:label "Funicular"@es ;
               rdfs:comment "Used for street-level rail cars where the cable runs beneath the vehicle."@en ;
-              rdfs:comment "Utilizado para funiculares en superficie en donde el cable pasa por debajo del vehículo."@es .
+              rdfs:comment "Utilizado para funiculares en superficie en donde el cable pasa por debajo del vehículo."@es ;
+              adms:versionNotes "The definition of CableCar has been changed in the gtfs spec to now describe CableTram. CableTram is the new term for instances previously linked to CableCar.".
 
 gtfs:CableCar a gtfs:RouteType ;
               status:term_status "unstable"@en ;
@@ -320,7 +322,17 @@ gtfs:CableCar a gtfs:RouteType ;
               rdfs:label "Aerial lift, suspended cable car (e.g., gondola lift, aerial tramway)"@en ;
               rdfs:label "Teleférico, telecabina"@es ;
               rdfs:comment "Cable transport where cabins, cars, gondolas or open chairs are suspended by means of one or more cables."@en ;
-              rdfs:comment "Normalmente se utiliza para medios de transporte público por cable en donde el vehículo queda suspendido de un cable."@es .
+              rdfs:comment "Normalmente se utiliza para medios de transporte público por cable en donde el vehículo queda suspendido de un cable."@es ;
+              adms:versionNotes "The definition of Gondola has been changed in the gtfs spec to now describe CableCar. CableCar is the new term for instances previously linked to Gondola.".
+
+gtfs:Gondola a gtfs:RouteType ;
+              status:term_status "unstable"@en ;
+              status:term_status "inestable"@es ;
+              rdfs:label "Gondola, Suspended cable car"@en ;
+              rdfs:label "Teleférico, telecabina"@es ;
+              rdfs:comment "Gondola, Suspended cable car. Typically used for aerial cable cars where the car is suspended from the cable."@en ;
+              rdfs:comment "Normalmente se utiliza para medios de transporte público por cable en donde el vehículo queda suspendido de un cable."@es ;
+              owl:deprecated "true" .
 
 gtfs:Funicular a gtfs:RouteType ;
                status:term_status "unstable"@en ;
