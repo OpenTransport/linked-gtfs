@@ -110,10 +110,8 @@ gtfs:parentStation a rdf:Property ;
                    status:term_status "inestable"@es ;
                    rdfs:label "Parent Station"@en ;
                    rdfs:label "estación matriz"@es ;
-                   rdfs:comment "gtfs:parentStation identifies the station associated with the stop"@en ;
+                   rdfs:comment "gtfs:parentStation defines hierarchy between the different locations"@en ;
                    rdfs:comment "gtfs:parentStation identifica la estación asociada a la parada"@es ;
-                   gtfs:comment "Links to a row in stop.txt where locationType=1."@en ;
-						 gtfs:comment "Enlaza a una línea en stop.txt donde locationType=1."@es ;
                    rdfs:range gtfs:Station ;
                    rdfs:domain gtfs:Stop .
 
@@ -253,7 +251,7 @@ gtfs:routeType a rdf:Property ;
                status:term_status "inestable"@es ;
                rdfs:label "Route type"@en ;
                rdfs:label "tipo de ruta"@es ;
-               rdfs:comment "Links to the type of vehicle operating on this route"@en ;
+               rdfs:comment "Indicates the type of transportation used on a route."@en ;
                rdfs:comment "Enlaza al tipo de vehículo que opera en esta ruta"@es ;
                rdfs:domain gtfs:Route ;
                rdfs:range gtfs:RouteType ;
@@ -356,7 +354,7 @@ gtfs:service a rdf:Property ;
              status:term_status "inestable"@es ;
              rdfs:label "Service"@en;
              rdfs:label "Servicio"@es;
-             rdfs:comment "Follows this gtfs:Service."@en ;
+             rdfs:comment "Identifies a set of dates when service is available for one or more routes."@en ;
              rdfs:comment "Cumple este gtfs:Service."@es ;
              rdfs:range gtfs:Service .
 
@@ -376,7 +374,7 @@ gtfs:block a rdf:Property ;
            rdfs:label "Bloque"@es ;
            rdfs:comment "Identifies the block to which the trip within this feed belongs. A block consists of two or more sequential trips made using the same vehicle, where a passenger can transfer from one trip to the next just by staying in the vehicle."@en ;
            rdfs:comment "Identifica el bloque al que pertenece el viaje. Un bloque consta de dos o más viajes secuenciales realizados en el mismo vehículo, en los que un pasajero puede cambiar de viaje si simplemente permanece en el vehículo."@es ;
-           rdfs:range xsd:nonNegativeInteger ;
+           rdfs:range gtfs:Block ;
            rdfs:domain gtfs:Trip .
 
 gtfs:shape a rdf:Property ;
@@ -384,7 +382,7 @@ gtfs:shape a rdf:Property ;
            status:term_status "inestable"@es ;
            rdfs:label "Shape"@en ;
            rdfs:label "forma del recorrido, trayecto, itinerario"@es ;
-           rdfs:comment "a link to a shape the trip follows."@en ;
+           rdfs:comment "Identifies a geospatial shape that describes the vehicle travel path for a trip."@en ;
            rdfs:comment "Un enlace al recorrido que sigue el viaje."@es ;
            rdfs:range gtfs:Shape .
 
@@ -490,18 +488,18 @@ gtfs:pickupType a rdf:Property ;
                 status:term_status "inestable"@es ;
                 rdfs:label "Pickup type"@en ;
                 rdfs:label "tipo de recogida"@es ;
-                rdfs:comment "Which type of pickup"@en;
+                rdfs:comment "Indicates pickup method."@en;
                 rdfs:comment "Indica si se recogen los pasajeros en una parada como parte del horario normal o si su recogida en dicha parada no se encuentra disponible."@es;
-                rdfs:range gtfs:PickupType .
+                rdfs:range gtfs:SinglePickup .
 
 gtfs:dropOffType a rdf:Property ;
                  status:term_status "unstable"@en ;
                  status:term_status "inestable"@es ;
                  rdfs:label "Drop off type"@en ;
                  rdfs:label "tipo de bajada"@es ;
-                 rdfs:comment "Which type of drop off"@en;
+                 rdfs:comment "Indicates drop off method."@en;
                  rdfs:comment "Indica si los pasajeros se bajan en una parada como parte del horario normal o si no pueden bajar en esa parada."@es;
-                 rdfs:range gtfs:DropOffType .
+                 rdfs:range gtfs:SingleDropOff .
 
 gtfs:PickupType a rdfs:Class ;
                 status:term_status "unstable"@en ;
@@ -941,7 +939,8 @@ gtfs:transferType a rdf:Property ;
                   rdfs:label "Transfer Type"@en ;
                   rdfs:label "tipo de transbordo"@es ;
                   rdfs:domain gtfs:Transfer ;
-                  rdfs:range gtfs:TransferType .
+                  rdfs:range gtfs:TransferType ;
+                  rdfs:comment "Indicates the type of connection between the specified gtfs:originStop and gtfs:destinationStop pair."@en .
 
 gtfs:TransferType a rdfs:Class ;
                   status:term_status "unstable"@en ;
@@ -1081,9 +1080,55 @@ gtfs:Translation a rdfs:Class ;
             rdfs:label "Translation"@en;
             rdfs:comment "Translated information of a transit agency."@en .
 
+gtfs:containsZone a rdf:Property ;
+                         rdfs:label "Contains Zone"@en ;
+                         rdfs:comment "Identifies the zones that a rider will enter while using a given fare class. Used in some systems to calculate correct fare class."@en ;
+                         rdfs:domain gtfs:FareRule ;
+                         rdfs:range gtfs:Zone .
 
+gtfs:continuousDropOffType a rdf:Property ;
+                         rdfs:label "Continuous Drop Off Type"@en ;
+                         rdfs:comment "Indicates whether a rider can alight from the transit vehicle at any point along the vehicle’s travel path."@en ;
+                         rdfs:range gtfs:ContinuousDropOff .
 
+gtfs:continuousPickupType a rdf:Property ;
+                           rdfs:label "Continuous Pickup Type"@en ;
+                           rdfs:comment "Indicates whether a rider can board the transit vehicle at any point along the vehicle’s travel path."@en ;
+                           rdfs:range gtfs:ContinuousPickup .
 
+gtfs:origin a rdf:Property ; 
+                  rdfs:label "Origin"@en ;
+                  rdfs:comment "Identifies an origin zone."@en ;
+                  rdfs:domain gtfs:FareRule ;
+                  rdfs:range gtfs:Zone . 
 
+gtfs:destination a rdf:Property ; 
+                  rdfs:label "Destination"@en ;
+                  rdfs:comment "Identifies a destination zone."@en ;
+                  rdfs:domain gtfs:FareRule ;
+                  rdfs:range gtfs:Zone . 
+
+gtfs:fare a rdf:Property ; 
+                  rdfs:label "Fare"@en ;
+                  rdfs:comment "Identifies a fare class."@en ;
+                  rdfs:domain gtfs:FareRule ;
+                  rdfs:range gtfs:FareClass .
+
+gtfs:level a rdf:Property ; 
+                  rdfs:label "Level"@en ;
+                  rdfs:comment "Identifies the level of the location."@en ;
+                  rdfs:domain gtfs:Location ;
+                  rdfs:range gtfs:Level .
+
+gtfs:pathwayMode a rdf:Property ; 
+                  rdfs:label "Pathway Mode"@en ;
+                  rdfs:comment "Type of pathway between the specified gtfs:originStop and gtfs:destinationStop pair."@en ;
+                  rdfs:domain gtfs:Pathway ;
+                  rdfs:range gtfs:Elevator, gtfs:ExitGate, gtfs:Escalator, gtfs:Walkway, gtfs:FareGate, gtfs:MovingSidewalk, gtfs:Stairs .
+
+gtfs:translation a rdf:Property ; 
+                  rdfs:label "Translation"@en ;
+                  rdfs:comment "Links the entity to its translation."@en .
+   
 
 
